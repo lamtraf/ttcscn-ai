@@ -3,6 +3,12 @@
 ### HOW TO USE:
 - Step 1: put model into **_model_** folder, replace model_path in model.py
 - Step 2: install requirements with **Conda**
+  ``` shell
+  # Create env
+  conda env create -f environment.yml
+  # Activate
+  conda activate vasr1
+  ```
 - Step 3: put the input audio file into **_audio_sample_** folder
 - Step 4: Run app.py
   - Default, it's big file (> 15s), app will divide input audio into segments by silence. After that, run **prediction** on each segment.
@@ -17,4 +23,5 @@
     ## Example
     #  python app.py -f VIVOSDEV01_R117.wav --small
   ```
+- Step 5: Output text in **output** folder
 - -- 
