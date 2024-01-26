@@ -24,7 +24,7 @@ fft_length = 384
 lower_edge_hertz, upper_edge_hertz, num_mel_bins = 80.0, 7600.0, 80
 
 # Path to the H5 file
-model_path = './model/stt v1.h5'
+model_path = "C:\LearnIT\Speech_to_text\mymodel (1).h5"
 
 
 def CTCLoss(y_true, y_pred):
@@ -218,24 +218,14 @@ final_chars = lowercase_chars + accented_chars + punctuation_chars + " "
 characters = [x for x in final_chars]
 # Mapping characters to integers
 char_to_num = keras.layers.StringLookup(vocabulary=characters, oov_token="")
+list = char_to_num.get_vocabulary()
+char2num =  " ".join(list)
+char_to_num_ = char2num.encode("utf-8")
 # Mapping integers back to original characters
 num_to_char = keras.layers.StringLookup(vocabulary=char_to_num.get_vocabulary(), oov_token="", invert=True)
 
-print(f"The vocabulary is: {char_to_num.get_vocabulary()} "
+print(f"The vocabulary is: {char_to_num_} "
       f"(size ={char_to_num.vocabulary_size()})")
-
-'''
-Generate VAD segments. Filters out non-voiced audio frames.
-@param waveFile: Input wav file to run VAD on.0
-
-@Retval:
-Returns tuple of
-    segments: a bytearray of multiple smaller audio frames
-              (The longer audio split into mutiple smaller one's)
-    sample_rate: Sample rate of the input audio file
-    audio_length: Duraton of the input audio file
-
-'''
 
 
 def vad_segment_generator(wavFile, aggressiveness):
